@@ -1,0 +1,40 @@
+.dashboard-wrapper {
+  background: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 2rem;
+  box-sizing: border-box;
+  align-items: center;
+  .dashboard-card {
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 0px 10px 25px #ddd;
+    overflow: hidden;
+    flex: 1;
+    width: 90%;
+    position: relative;
+    .add-product-button{
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        background-color: $primary;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        box-shadow: 0 3px 6px rgba(226, 156, 156, 0.16),
+        0 3px 6px rgba(0, 0, 0, 0.23);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover{
+            background-color: darken($primary, 10);
+
+        }
+        .add-icon{
+            font-size: 3.5rem;
+            color: #fff;
+        }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  .form-row-header{
+    margin: 0;
+    margin-top: .5rem;
+    font-size: 1.2rem;
+    font-weight: 400; 
+  }
+  .form-row {
+      display: flex;
+      flex-direction: row;
+      min-width: 300px;
+      align-items: center;
+      padding: .5rem 0;
+    .form-input {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #d7dbdb;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .form-col{
+      display: flex;
+      flex-direction: column;
+      .form-sub-row{
+        display: flex;
+        flex-direction: row;
+      }
+    }
+  }
+}

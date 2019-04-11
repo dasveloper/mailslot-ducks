@@ -1,0 +1,95 @@
+.register-wrapper {
+  background: #f8f8f8;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  .register-left,
+  .register-right {
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .register-left {
+    box-shadow: 0 10px 25px #ddd;
+    background: #fff;
+    flex-basis: 40%;
+    .register-header{
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    .register-form{
+        min-width: 300px;
+
+    }
+    .register-toggle-prompt{
+      font-size: 1rem;
+      color: $gray-medium;
+      margin-top: 1rem;
+      .register-toggle-link{
+        text-decoration: none;
+        margin-left: .25rem;
+        font-size: 1rem;
+        color: $primary;
+      }
+    }
+  }
+  .register-right {
+    position: relative;
+    flex-basis: 60%;
+    .mock {
+      max-width: 40%;
+      animation: float 4s ease-in-out infinite;
+      position: absolute;
+      z-index: 2;
+        margin-top: 40px;
+      &.left {
+        margin-top: -30px;
+        z-index: 1;
+        animation: float-left 5s ease-in-out infinite;
+
+      }
+      &.right {
+        margin-top: -30px;
+        z-index: 1;
+        animation: float-right 7s ease-in-out infinite;
+
+      }
+    }
+  }
+}
+@keyframes float {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, -20px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+@keyframes float-left {
+  0% {
+    transform: translate(-50%, 0px);
+  }
+  50% {
+    transform: translate(-50%, -20px);
+  }
+  100% {
+    transform: translate(-50%, 0px);
+  }
+}
+
+@keyframes float-right {
+  0% {
+    transform: translate(50%, 0px);
+  }
+  50% {
+    transform: translate(50%, -20px);
+  }
+  100% {
+    transform: translate(50%, 0px);
+  }
+}

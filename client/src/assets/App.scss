@@ -1,0 +1,38 @@
+
+@import "colors.scss";
+@import "register.scss";
+@import "form.scss";
+@import "button.scss";
+@import "mockup.scss";
+@import "productMockup.scss";
+
+@import "dashboard.scss";
+
+*{
+  font-family: 'Roboto', sans-serif;
+
+}
+body, html{
+  margin: 0;
+  padding: 0;
+}
+//NAV HEADER
+.nav-wrapper {
+  // position: absolute;
+  //top: 0;
+  //left: 0;
+  z-index: 9999;
+  width: 100%;
+}
+
+.container {
+  min-height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.container-wrapper {
+  flex: 1;
+  display:flex;
+  flex-direction: row;
+}

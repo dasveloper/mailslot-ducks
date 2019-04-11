@@ -1,0 +1,111 @@
+.product-mockup-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 2rem 0;
+  max-width: 400px;
+  .product-mockup-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(226, 156, 156, 0.16),
+      0 3px 6px rgba(0, 0, 0, 0.23);
+    background-color: #e8e8e8;
+    margin-bottom: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+  }
+  .product-mockup-card {
+    flex: 1;
+    box-shadow: 0 10px 25px #ddd;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    .product-mockup-brand-color {
+      width: 100%;
+      height: 350px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 0;
+      border-bottom-left-radius: 75px;
+      border-bottom-right-radius: 75px;
+    }
+    .product-mockup-image {
+      width: 350px;
+      height: 350px;
+      background: #e8e8e8;
+      box-shadow: 0 3px 6px rgba(226, 156, 156, 0.16),
+        0 3px 6px rgba(0, 0, 0, 0.23);
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      z-index: 2;
+      position: relative;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .product-mockup-title {
+      font-size: 1.6rem;
+      margin: 0.5rem 0;
+    }
+    .product-mockup-description {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      flex: 1;
+    }
+    .product-mockup-email-wrapper {
+      display: flex;
+      border-radius: 100px;
+      overflow: hidden;
+      align-items: center;
+      background-color: #e8e8e8;
+      margin: 0.5rem 0;
+
+      .product-mockup-email-input {
+        flex: 1;
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        font-size: 1.4rem;
+        background: transparent;
+        user-select: none;
+        outline: none;
+        
+      }
+      .product-mockup-email-submit {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        display: flex;
+        background: transparent;
+        align-items: center;
+        justify-content: center;
+        border: none;         
+        margin-right: 4px;
+        .product-mockup-email-submit-icon {
+          font-size: 1.4rem;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.file-name {
+  margin-left: 0.5rem;
+  color: $gray-dark;
+}
+.file-requirements {
+  font-size: 0.8rem;
+  color: $gray-medium;
+  margin: 0.25rem 0;
+}
