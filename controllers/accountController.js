@@ -7,12 +7,18 @@ const mongoose = require("mongoose");
 var sgTransport = require("nodemailer-sendgrid-transport");
 const validate = require("../helpers/validation");
 const imageHelper = require("../helpers/imageHelper");
-
+const shortid = require('shortid');
 
 const User = mongoose.model("User");
 
 exports.register_local = function(req, res, next) {
-  const {registerEmail, registerPassword, registerConfirmPassword} = req.body;
+  const { registerEmail, registerPassword, registerConfirmPassword } = req.body;
+  if (req.user) {
+    return res.status(400).json({
+      success: false,
+      message: "You're already logged in, please logout to create a new account"
+    });
+  }
   if (!validate(registerEmail, "email")) {
     return res.status(400).json({
       success: false,
@@ -20,13 +26,13 @@ exports.register_local = function(req, res, next) {
     });
   }
 
-  if (!validate(registerPassword, "string")) {
+  if (!validate(registerPassword, "password")) {
     return res.status(400).json({
       success: false,
-      message: "Please provide a valid password"
+      message: "Password must be at least 6 characters long"
     });
   }
-  if (!validate(registerConfirmPassword, "string")) {
+  if (!validate(registerConfirmPassword, "password")) {
     return res.status(400).json({
       success: false,
       message: "Please confirm your password"
@@ -59,7 +65,13 @@ exports.register_local = function(req, res, next) {
 };
 
 exports.login_local = function(req, res, next) {
-  const {loginEmail, loginPassword} = req.body;
+  if (req.user) {
+    return res.status(400).json({
+      success: false,
+      message: "You're already logged in, please logout to create a new account"
+    });
+  }
+  const { loginEmail, loginPassword } = req.body;
   if (!validate(loginEmail, "email")) {
     return res.status(400).json({
       success: false,
@@ -150,7 +162,7 @@ exports.forgot_password = function(req, res, next) {
               user.email +
               " with further instructions."
           });
-          done(err, 'done');
+          done(err, "done");
           //req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
         });
       }
@@ -166,39 +178,68 @@ exports.forgot_password = function(req, res, next) {
 };
 exports.update_profile = async function(req, res) {
   const { companyName, brandColor } = req.body;
-  let file = req.files.logo;
-
-  if (file.mimetype != "image/jpeg" && file.mimetype != "image/png") {
-    return res.status(401).json({
-      success: false,
-      message: "wrong file type"
-    });
-  } else if (file.size > 1000000 || file.truncated) {
-    return res.status(401).json({
-      success: false,
-      message: "file too big"
-    });
+  const {logo} = req.files || {};
+  const companyData = {};
+  if (companyName) {
+    if (!validate(companyName, "string")) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide a valid company name"
+      });
+    }
+    companyData.companyName = companyName;
   }
-
-
-  const logo = `${req.user.id}/logo.png`;
-  var companyData = {
-    companyName,
-    brandColor,
-    logo
-  };
-  let result = await imageHelper.saveImage(file, logo);
-  if (!result) {
-    return res.status(401).json({
-      success: false,
-      message: "image upload fail"
-    });
+  if (brandColor) {
+    if (!validate(brandColor, "string")) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide a valid brand color"
+      });
+    }
+    companyData.brandColor = brandColor;
   }
-  User.findOneAndUpdate(req.user.id, companyData, function(err, user) {
+  if (logo) {
+    if (logo.mimetype != "image/jpeg" && logo.mimetype != "image/png") {
+      return res.status(401).json({
+        success: false,
+        message: "Logo must be either a .jpg or .png image"
+      });
+    }
+    if (logo.size > 5000000 || logo.truncated) {
+      return res.status(401).json({
+        success: false,
+        message: "Maximum logo file size is 5MB"
+      });
+    }
+    const logoKey = `${req.user.id}/logos/${shortid.generate()}.png`;
+
+    let result = await imageHelper.saveObject(logo, logoKey);
+    if (!result) {
+      return res.status(401).json({
+        success: false,
+        message: "Image failed to upload, please try again"
+      });
+    }
+    companyData.logo = logoKey;
+  }
+  User.findByIdAndUpdate(req.user.id, companyData, {new: true},function(err, user) {
     if (err) throw new Error(err);
-    return res.status(200).json({
-      success: true,
-      message: user
-    });
+    res.send(user);
   });
+};
+exports.get_all = async function(req, res) {
+  User.findById(req.user.id)
+
+    .populate({
+      path: "products",
+      model: "Product",
+      populate: { path: "subscribers", model: "Subscription" }
+    })
+
+    .exec(function(err, results) {
+      if (err) {
+        throw new Error(err);
+      }
+      res.send(results);
+    });
 };

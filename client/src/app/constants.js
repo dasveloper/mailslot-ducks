@@ -1,0 +1,1 @@
+export const AWSUrlPrefix = "https://s3.amazonaws.com/mailslot/";

@@ -1,13 +1,23 @@
 
 import * as serviceWorker from './serviceWorker';
+import "./assets/App.scss"
 
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import configureStore from './store';
-
-import App from "./App";
+import App from "./app/App";
 import WebFont from 'webfontloader';
+import thunk from 'redux-thunk';
+
+import {
+  createStore,
+  applyMiddleware
+} from 'redux';
+import rootReducer from './reducers';
+import logger from 'redux-logger';
+
+const middleware = applyMiddleware(thunk, logger);
+const store = createStore(rootReducer, middleware);
 
 WebFont.load({
   google: {
@@ -17,7 +27,7 @@ WebFont.load({
 
 
 ReactDOM.render(
-  <Provider store={configureStore()}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById("root")

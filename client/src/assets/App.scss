@@ -1,11 +1,19 @@
 
 @import "colors.scss";
+@import "loader.scss";
+@import "utilities.scss";
+
+@import "dropdown.scss";
+@import "nav.scss";
+
+@import "login.scss";
 @import "register.scss";
 @import "form.scss";
 @import "button.scss";
 @import "mockup.scss";
 @import "productMockup.scss";
-
+@import "productListItem.scss";
+@import "landing.scss";
 @import "dashboard.scss";
 
 *{
@@ -21,13 +29,15 @@ body, html{
   // position: absolute;
   //top: 0;
   //left: 0;
-  z-index: 9999;
+  z-index: 9;
   width: 100%;
 }
-
+a{
+  color: inherit;
+}
 .container {
   min-height: 100vh;
-  background-color: #fff;
+  background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
 }

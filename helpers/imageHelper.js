@@ -5,7 +5,7 @@ var request = require("request");
 var mime = require('mime-types')
 
 //Returns true if text record with key/value match is found
-module.exports.saveImage = function(file, key) {
+module.exports.saveObject = function(file, key) {
   const folder = "foo" + "/";
 
   const params = {

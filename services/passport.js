@@ -8,12 +8,15 @@ const User = mongoose.model("User");
 
 //Put user in token
 passport.serializeUser((user, done) => {
-  done(null, user._id);
+  console.log(user.id);
+  done(null, user.id);
 });
 
 //Get user from token
 passport.deserializeUser((id, done) => {
   User.findById(id).then(user => {
+    console.log(user.id);
+
     done(null, user);
   });
 });

@@ -19,8 +19,9 @@ module.exports = app => {
   //Logout User
   app.get("/account/logout", (req, res) => {
     req.logout();
-    res.redirect("/");
+    res.send();
   });
   app.post("/account/updateProfile", account_controller.update_profile);
+  app.get("/account/getAll", account_controller.get_all);
 
 };

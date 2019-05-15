@@ -12,6 +12,9 @@ module.exports = function validate(value, type) {
     case "email":
       return value && validator.isEmail(value) && value.length <= 200;
 
+    case "password":
+      return value && value.length >= 6;
+
     case "url":
       return;
       value &&
@@ -22,6 +25,10 @@ module.exports = function validate(value, type) {
         value.length <= 200;
 
     default:
-      return value && !validator.isEmpty(value, { ignore_whitespace: true }) && value.length <= 200;
+      return (
+        value &&
+        !validator.isEmpty(value, { ignore_whitespace: true }) &&
+        value.length <= 200
+      );
   }
 };

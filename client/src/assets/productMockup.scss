@@ -60,6 +60,8 @@
       font-size: 1rem;
       margin: 0.5rem 0;
       flex: 1;
+      font-weight: 300;
+
     }
     .product-mockup-email-wrapper {
       display: flex;
@@ -73,12 +75,14 @@
         flex: 1;
         display: block;
         width: 100%;
-        padding: 1rem;
+        padding: 1rem 1.25rem;
         border: none;
         font-size: 1.4rem;
         background: transparent;
         user-select: none;
         outline: none;
+        font-weight: 300;
+
         
       }
       .product-mockup-email-submit {
@@ -96,6 +100,38 @@
           color: #fff;
         }
       }
+    }
+  }
+  .success-overlay{
+    position: absolute;
+    z-index: 3;
+    background: rgba(255,255,255,0.95);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding :1rem;
+    box-sizing: border-box;
+    
+    .success-icon{
+      font-size: 3rem;
+      color: $success;
+    }
+    .success-header{
+      color: $success;
+      font-size: 2.5rem;
+      margin : .5rem;
+    }
+    .success-message{
+      font-size: 1.4rem;
+      text-align: center;
+      margin: .5rem;
+      font-weight: 300;
+
     }
   }
 }

@@ -10,6 +10,8 @@ const passport = require('passport');
 const keys = require('./config/keys');
 require('./models/User');
 require('./models/Product');
+require('./models/Subscription');
+
 const accountRoutes = require('./routes/accountRoutes');
 const productRoutes = require('./routes/productRoutes');
 
