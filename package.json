@@ -27,7 +27,7 @@
     "express-fileupload": "^1.1.4",
     "mime-types": "^2.1.22",
     "mongoose": "^5.2.16",
-    "nodemailer": "^5.1.1",
+    "nodemailer": "^6.4.16",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
